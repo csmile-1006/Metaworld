@@ -58,8 +58,7 @@ class SawyerCoffeePushEnvV2(SawyerXYZEnv):
             "obj_to_target": obj_to_target,
             "unscaled_reward": reward,
         }
-        info["skill"] = int(info["success"]) + int(info["grasp_success"]) + int(info["near_object"])
-        print(f"info: {info}")
+        info["skill"] = int(info["success"]) + int(info["near_object"])
 
         return reward, info
 
