@@ -44,10 +44,10 @@ class SawyerCoffeePushEnvV2(SawyerXYZEnv):
 
     @_assert_task_is_set
     def evaluate_state(self, obs, action):
-        reward, tcp_to_obj, tcp_open, obj_to_target, grasp_reward, in_place = self.compute_reward(action, obs)
+        reward, tcp_to_obj, tcp_opened, obj_to_target, grasp_reward, in_place = self.compute_reward(action, obs)
         success = float(obj_to_target <= 0.07)
         near_object = float(tcp_to_obj <= 0.03)
-        grasp_success = float(self.touching_object and (tcp_open > 0))
+        grasp_success = float(self.touching_object and (tcp_opened > 0))
 
         info = {
             "success": success,
@@ -58,7 +58,7 @@ class SawyerCoffeePushEnvV2(SawyerXYZEnv):
             "obj_to_target": obj_to_target,
             "unscaled_reward": reward,
         }
-        info["skill"] = int(info["success"]) + int(info["near_object"])
+        info["skill"] = int(info["success"]) + int(tcp_to_obj < 0.04 and tcp_opened > 0)
 
         return reward, info
 
