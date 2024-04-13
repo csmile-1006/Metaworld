@@ -69,7 +69,7 @@ class SawyerDoorEnvV2(SawyerXYZEnv):
             "obj_to_target": 0,
             "unscaled_reward": reward,
         }
-        info["skill"] = float(info["near_object"] >= 0.75) + float(info["success"])
+        info["skill"] = float(info["near_object"] >= 1.0) + float(info["success"])
 
         return reward, info
 
