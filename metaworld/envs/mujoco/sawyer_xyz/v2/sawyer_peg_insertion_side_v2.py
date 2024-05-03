@@ -86,7 +86,7 @@ class SawyerPegInsertionSideEnvV2(SawyerXYZEnv):
             "obj_to_target": obj_to_target,
             "unscaled_reward": reward,
         }
-        info["skill"] = float(info["grasp_success"]) + float(info["success"])
+        info["skill"] = float(info["grasp_success"]) + float(info["near_object"]) + float(info["success"])
 
         return reward, info
 

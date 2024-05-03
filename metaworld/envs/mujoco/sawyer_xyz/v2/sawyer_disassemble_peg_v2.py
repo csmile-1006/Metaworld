@@ -58,7 +58,7 @@ class SawyerNutDisassembleEnvV2(SawyerXYZEnv):
             "obj_to_target": 0,
             "unscaled_reward": reward,
         }
-        info["skill"] = float(info["grasp_success"]) + float(info["success"])
+        info["skill"] = float(reward_grab >= 0.3) + float(info["success"])
 
         return reward, info
 

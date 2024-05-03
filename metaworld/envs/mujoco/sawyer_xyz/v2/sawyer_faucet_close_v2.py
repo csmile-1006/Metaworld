@@ -51,7 +51,7 @@ class SawyerFaucetCloseEnvV2(SawyerXYZEnv):
             "obj_to_target": target_to_obj,
             "unscaled_reward": reward,
         }
-        info["skill"] = float(info["near_object"]) + float(info["success"])
+        info["skill"] = float(tcp_to_obj <= 0.05) + float(info["success"])
 
         return reward, info
 
