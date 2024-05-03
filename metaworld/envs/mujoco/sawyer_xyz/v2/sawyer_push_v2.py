@@ -82,7 +82,7 @@ class SawyerPushEnvV2(SawyerXYZEnv):
             "obj_to_target": target_to_obj,
             "unscaled_reward": reward,
         }
-        info["skill"] = float(info["grasp_success"]) + float(info["sucesss"])
+        info["skill"] = float(info["grasp_success"]) + float(info["success"])
 
         return reward, info
 
