@@ -57,6 +57,7 @@ class SawyerDoorCloseEnvV2(SawyerDoorEnvV2):
             "grasp_reward": 1.0,
             "unscaled_reward": reward,
         }
+        info["skill"] = float(info["in_place_reward"] == 1.0) + float(info["success"])
         return reward, info
 
     def compute_reward(self, actions, obs):
