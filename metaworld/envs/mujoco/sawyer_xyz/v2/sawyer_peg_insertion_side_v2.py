@@ -74,6 +74,7 @@ class SawyerPegInsertionSideEnvV2(SawyerXYZEnv):
             self.compute_reward(action, obs)
         )
         grasp_success = float(tcp_to_obj < 0.02 and (tcp_open > 0) and (obj[2] - 0.01 > self.obj_init_pos[2]))
+        lift_success = float(obj[2] - 0.1 > self.obj_init_pos[2])
         success = float(obj_to_target <= 0.07)
         near_object = float(tcp_to_obj <= 0.03)
 
@@ -81,13 +82,13 @@ class SawyerPegInsertionSideEnvV2(SawyerXYZEnv):
             "success": success,
             "near_object": near_object,
             "grasp_success": grasp_success,
+            "lift_success": lift_success,
             "grasp_reward": grasp_reward,
             "in_place_reward": in_place_reward,
             "obj_to_target": obj_to_target,
             "unscaled_reward": reward,
         }
-        info["skill"] = float(info["grasp_success"]) + float(info["near_object"]) + float(info["success"])
-
+        info["skill"] = int(tcp_to_obj < 0.08 and (tcp_open > 0)) + int(lift_success) + int(info["success"])
         return reward, info
 
     def _get_pos_objects(self):
