@@ -88,7 +88,10 @@ class SawyerPegInsertionSideEnvV2(SawyerXYZEnv):
             "obj_to_target": obj_to_target,
             "unscaled_reward": reward,
         }
-        info["skill"] = int(tcp_to_obj < 0.08 and (tcp_open > 0)) + int(lift_success) + int(info["success"])
+        info["skill"] = int(tcp_to_obj < 0.02 and (tcp_open > 0)) + int(lift_success) + int(info["success"])
+        print(f"info: {info}")
+        if info["success"]:
+            print("success\n")
         return reward, info
 
     def _get_pos_objects(self):
