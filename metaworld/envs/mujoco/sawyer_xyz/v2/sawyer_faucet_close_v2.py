@@ -52,8 +52,7 @@ class SawyerFaucetCloseEnvV2(SawyerXYZEnv):
             "unscaled_reward": reward,
         }
         # info["skill"] = float(tcp_to_obj <= 0.05) + float(info["success"])
-        info["skill"] = int(info["success"])
-
+        info["skill"] = int(info["grasp_reward"] > 0.9) + int(info["success"])
         return reward, info
 
     @property

@@ -70,7 +70,7 @@ class SawyerLeverPullEnvV2(SawyerXYZEnv):
             "unscaled_reward": reward,
         }
         # info["skill"] = int(info["success"]) + int(info["grasp_success"]) + int(info["near_object"])
-        info["skill"] = int(info["success"])
+        info["skill"] = int(ready_to_lift > 0.9) + int(info["success"])
         return reward, info
 
     def _get_id_main_object(self):
