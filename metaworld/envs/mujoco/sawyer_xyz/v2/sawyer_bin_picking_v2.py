@@ -86,6 +86,10 @@ class SawyerBinPickingEnvV2(SawyerXYZEnv):
         else:
             info["skill"] = int(info["grasp_success"])
 
+        print(f"info: {info}")
+        if info["success"]:
+            print("success \n")
+
         return reward, info
 
     @property
