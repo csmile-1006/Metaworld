@@ -62,10 +62,6 @@ class SawyerCoffeePullEnvV2(SawyerXYZEnv):
 
         }
         info["skill"] = int(info["success"]) + int(tcp_to_obj < 0.04 and tcp_open > 0)
-        print(f"info: {info}")
-        if info["success"]:
-            print("success\n")
-
         return reward, info
 
     @property
